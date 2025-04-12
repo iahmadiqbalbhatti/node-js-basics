@@ -1,47 +1,28 @@
-const http = require('http');
-const fs = require('fs');
+require('dotenv')
+	.config()
 
-const server = http.createServer((req, res) => {
-	const url = req.url;
-	const method = req.method;
+const express = require('express')
 
-	if (url === '/') {
-		res.write(`
-		<html>
-			<head>
-				<title>Enter Message</title>
-			</head>
-			<body>
-			<form action="/message" method="post">
-				<input type="text" name="message" placeholder="Enter Message" />
-				<button type="submit">Send</button>
-			</form>			
-			</body>
-		</html>
-	`);
-		return res.end();
-	}
+const app = express()
+const port = process.env.PORT;
 
-	if (url === '/message' && method === 'POST') {
-		req.on('data', function (chunk) {})
-		fs.writeFileSync('message.txt', 'DUMMY');
-		res.statusCode = 302;
-		res.setHeader('Location', "/")
-		return res.end();
-	}
+app.get('/', (req, res) => {
+	res.send('Hello World!')
+})
 
-	res.setHeader('Content-type', 'text/html');
-	res.write(`
-	<html>
-	<head>
-		<title>My First Node Js Page</title>
-	</head>
-	<body>
-		<h1> Hello from my Node Js Server! </h1>
-	</body>
-	</html>
-	`)
+app.get('/twitter', (req, res) => {
+	res.send('iahmadiqbalbhatti')
+})
 
-});
+app.get('/login', (req, res) => {
+	res.send(`<h1>Pleas login at Love is Blind</h1>`)
+})
 
-server.listen(8080);
+app.get('/youtube', (req, res) => {
+	res.send(`<h2>Ahmad Iqbal Bhatti - Web Developer</h2>`)
+})
+
+app.listen(port, () => {
+
+	console.log(`Example app listening on port ${port}`)
+})
