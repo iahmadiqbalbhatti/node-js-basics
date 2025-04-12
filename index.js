@@ -22,6 +22,17 @@ app.get('/youtube', (req, res) => {
 	res.send(`<h2>Ahmad Iqbal Bhatti - Web Developer</h2>`)
 })
 
+app.get('/github', (req, res) => {
+	res.json({
+		dotfiles: 'ignore',
+		etag: false,
+		extensions: ['htm', 'html'],
+		index: false,
+		maxAge: '1d',
+		redirect: false,
+	})
+})
+
 app.listen(port, () => {
 
 	console.log(`Example app listening on port ${port}`)
